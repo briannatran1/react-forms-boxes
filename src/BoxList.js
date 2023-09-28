@@ -22,7 +22,7 @@ function BoxList() {
 
   /** Removes an existing box */
   function removeBox(boxId) {
-    setBoxes(box => box.id === boxId);
+    setBoxes(boxes => boxes.filter(box => box.id !== boxId));
   }
 
   return (
@@ -31,6 +31,7 @@ function BoxList() {
       <div className="Box-container">
         {boxes.map((box) => (
           <Box
+            id={box.id}
             key={box.id}
             width={box.width}
             height={box.height}

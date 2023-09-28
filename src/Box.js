@@ -5,16 +5,22 @@
  * - height
  * - backgroundColor
  * - removeBox
+ * - id
  *
  * BoxList -> NewBoxForm -> Box
  */
 
-function Box({ width, height, backgroundColor, removeBox }) {
+function Box({ width, height, backgroundColor, removeBox, id }) {
   const boxStyle = {
     width: `${width}px`,
     height: `${height}px`,
     backgroundColor: backgroundColor
   };
+
+  /** removes box using id when clicking remove button */
+  function handleClick() {
+    removeBox(id);
+  }
 
   return (
     <div>
@@ -22,7 +28,7 @@ function Box({ width, height, backgroundColor, removeBox }) {
         style={boxStyle}></div>
       <button
         className="Box-remove-button"
-        onClick={removeBox}>Remove the box!</button>
+        onClick={handleClick}>Remove the box!</button>
     </div>
 
   );
