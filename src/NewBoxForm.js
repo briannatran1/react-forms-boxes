@@ -2,12 +2,16 @@ import React, { useState } from "react";
 
 /** Form for creating a new box to add to page.
  *
+ * props: addBox
+ *
  * Has state for the height, width, backgroundColor of the box;
  * on submission,
  * sends {height, width, backgroundColor} to fn rec'd from parent.
  *
  * BoxList -> NewBoxForm -> Box
  */
+
+//TODO: draw out docstring in line 17
 
 function NewBoxForm({ addBox }) {
   const initialState = { height: '', width: '', backgroundColor: '' };
@@ -31,6 +35,7 @@ function NewBoxForm({ addBox }) {
     }));
   }
 
+  //TODO: be more specific in htmlFors and labels
   /** renders form */
   return (
     <form onSubmit={handleSubmit}>

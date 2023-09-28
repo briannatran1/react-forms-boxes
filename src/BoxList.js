@@ -3,12 +3,13 @@ import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
 import { v4 as uuid } from 'uuid';
 
+//TODO: fix docstring comp hierarchy
 /** BoxList: manages boxes on page
  *
  * State:
- * - boxes: array like [ { id, height, width, backgroundColor }, ... ]
+ * - boxes: [ { id, height, width, backgroundColor }, ... ]
  *
- * BoxList -> NewBoxForm -> Box
+ * App -> BoxList -> NewBoxForm -> Box
  */
 
 function BoxList() {
@@ -25,6 +26,7 @@ function BoxList() {
     setBoxes(boxes => boxes.filter(box => box.id !== boxId));
   }
 
+  //TODO: move map out of return => make a new fn or component
   return (
     <div>
       <NewBoxForm addBox={addBox} />
