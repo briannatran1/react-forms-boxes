@@ -1,26 +1,44 @@
 import { useState } from "react";
 import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
+import { v4 as uuid } from 'uuid';
+
+/** BoxList: manages boxes on page
+ *
+ * State:
+ * - boxes: array like [ { id, height, width, backgroundColor }, ... ]
+ *
+ * BoxList -> NewBoxForm -> Box
+ */
 
 function BoxList() {
-  const [formData, setFormData] = useState({
-    height: '',
-    width: '',
-    backgroundColor: ''
-  });
+  const [boxes, setBoxes] = useState([]);
 
-  function handleChange(evt) {
-    const { name, value } = evt.target;
+  /** Adds a new box. */
+  function addBox(box) {
+    let newBox = { ...box, id: uuid() };
+    setBoxes(boxes => [...boxes, newBox]);
+  }
 
-    setFormData(fData => ({
-      ...fData,
-      [name]: value,
-    }));
+  /** Removes an existing box */
+  function removeBox(boxId) {
+    setBoxes(box => box.id === boxId);
   }
 
   return (
     <div>
-
+      <NewBoxForm addBox={addBox} />
+      <div className="Box-container">
+        {boxes.map((box) => (
+          <Box
+            key={box.id}
+            width={box.width}
+            height={box.height}
+            backgroundColor={box.backgroundColor}
+            removeBox={removeBox}
+          />)
+        )}
+      </div>
     </div>
   );
 }
